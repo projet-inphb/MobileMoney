@@ -1,0 +1,64 @@
+cabal-version:      2.4
+name:                securemomo
+version:             0.1.0.0
+build-type:          Simple
+
+-- ============================================================
+-- Bibliotheque : tout le code reutilisable (menu compris),
+-- sauf Main.hs. C'est ici que la separation devient utile :
+-- l'executable ET le test-suite en dependent tous les deux,
+-- sans avoir a lister les modules deux fois.
+-- ============================================================
+
+library
+    hs-source-dirs:   src
+    exposed-modules:  Menu
+                    , Types
+                    , Compte
+                    , Etat
+                    , Auth
+                    , Chiffrement
+                    , Validation
+                    , ValidationEither
+                    , Pipeline
+                    , Transactions
+                    , Transfert
+                    , Persistence
+                    , Journal
+                    , Utils
+    build-depends:    base >=4 && <5
+                    , directory
+                    , filepath
+                    , mtl
+                    , time
+    default-language: Haskell2010
+
+-- ============================================================
+-- Executable : uniquement Main.hs, qui appelle CLI.startApplication.
+-- Son hs-source-dirs (app) doit rester SEPARE de celui de la
+-- library (src) : s'ils pointaient vers le meme dossier, GHC
+-- retrouverait les fichiers .hs de la library juste a cote de
+-- Main.hs et les recompilerait une deuxieme fois ici, sans les
+-- dependances (directory, filepath, mtl, time) qui ne sont
+-- declarees que dans build-depends de la library.
+-- ============================================================
+
+executable securemomo
+    main-is:          Main.hs
+    hs-source-dirs:   app
+    build-depends:    base >=4 && <5
+                    , securemomo
+    default-language: Haskell2010
+
+-- ============================================================
+-- Suite de tests : "cabal test" pour l'executer
+-- ============================================================
+
+test-suite securemomo-test
+    type:             exitcode-stdio-1.0
+    main-is:          Spec.hs
+    hs-source-dirs:   test
+    build-depends:    base >=4 && <5
+                    , securemomo
+                    , HUnit
+    default-language: Haskell2010
