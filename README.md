@@ -37,8 +37,8 @@ Deux comptes de démonstration sont créés automatiquement au premier lancement
 
 | Propriétaire | Numéro     | Mot de passe |
 |---|---|---|
-| Alice | 0701234567 | 1234 |
-| Bob   | 0509876543 | 5678 |
+| Affoue | 0701234567 | 1234 |
+| Kouakou  | 0509876543 | 5678 |
 
 Le menu principal permet de se connecter avec l'un de ces comptes, d'en créer un nouveau, de consulter la liste des comptes, ou de consulter le journal d'activité.
 
@@ -61,7 +61,7 @@ securemomo.cabal   -- configuration du build (library / executable / test-suite)
 app/
   Main.hs           -- point d'entree (main), appelle CLI.startApplication
 src/
-  CLI.hs            -- menu interactif
+  Menu.hs            -- menu interactif
   Types.hs          -- types de donnees (Compte, Transaction, ...)
   Validation.hs      -- validations pures (montant, numero, plafond)
   ValidationEither.hs-- validations via Either et types d'erreur dedies
