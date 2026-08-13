@@ -59,7 +59,7 @@ Exécute la suite de tests unitaires (`test/Spec.hs`, avec HUnit) sur les foncti
 ```
 securemomo.cabal   -- configuration du build (library / executable / test-suite)
 app/
-  Main.hs           -- point d'entree (main), appelle CLI.startApplication
+  Main.hs           -- point d'entree (main), appelle Menu.startApplication
 src/
   Menu.hs            -- menu interactif
   Types.hs          -- types de donnees (Compte, Transaction, ...)
